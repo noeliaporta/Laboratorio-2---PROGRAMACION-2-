@@ -1,33 +1,43 @@
 package Empresa_MEG.src.main.java.org.example;
 
 public class Auto {
-    String marca;
-    String modelo;
-    String color;
-    Motor motor;
-    double precio;
+    private String marca;
+    private String modelo;
+    private String color;
+    private double precio;
+    private double kilometrosRecorridos;
 
-    public Auto(Motor motor) {
-        this.motor = motor;
+    public Auto(){
+        cargarAutos();
     }
 
-    public Motor getMotor() {
-        return motor;
+    public Auto(String marca, String modelo, String color, double cil, int hp) {
+        this.marca = marca;
+        this.color = color;
+        motor = new Motor(cil , hp);
     }
 
-    public void setMotor(Motor motor) {
-        this.motor = motor;
+    public void cargarAutos(){
+        String cilAux, cabAux;
+        double cil;
+        int hp;
+
+        this.marca = JOptionPane.showInputDialog(null, "Ingrese la marca: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
+        this.modelo = JOptionPane.showInputDialog(null, "Ingrese el modelo: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
+        this.color = JOptionPane.showInputDialog(null, "Ingrese el color: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
+        this.precio = JOptionPane.showInputDialog(null, "Ingrese el precio: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
+        cil = JOptionPane.showInputDialog(null, "Ingrese la cilindrada: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cilAux );
+        hp = JOptionPane.showInputDialog(null, "Ingrese los caballos de fuerza: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cabAux );
     }
 
-    @Override
     public void avanzar(int km){
-
+        if(motor.requiereCambioAceite(km)){
+            JOptionPane.showMessageDialog("El auto necesita cambio de aceite.");
+        }else{
+            JOptionPane.showMessageDialog("Usted avanzo " + km + " kilometros. ");
+        }
     }
 
-    @Override
-    public boolean requiereCambioAceite(){
-
-    }
 }
 /*
 Clase Auto
