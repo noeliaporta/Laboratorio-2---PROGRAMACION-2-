@@ -1,41 +1,50 @@
 package Empresa_MEG.src.main.java.org.example;
+import javax.swing.JOptionPane;
 
 public class Auto {
     private String marca;
     private String modelo;
     private String color;
     private double precio;
-    private double kilometrosRecorridos;
+    private Motor motor;
 
     public Auto(){
         cargarAutos();
     }
 
-    public Auto(String marca, String modelo, String color, double cil, int hp) {
+    public Auto(String marca, String modelo, String color, Motor motor, double cil, int hp) {
         this.marca = marca;
+        this.modelo = modelo;
         this.color = color;
-        motor = new Motor(cil , hp);
+        this.precio = precio;
+        this.motor = motor;
     }
 
     public void cargarAutos(){
-        String cilAux, cabAux;
-        double cil;
-        int hp;
-
         this.marca = JOptionPane.showInputDialog(null, "Ingrese la marca: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
         this.modelo = JOptionPane.showInputDialog(null, "Ingrese el modelo: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
         this.color = JOptionPane.showInputDialog(null, "Ingrese el color: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
-        this.precio = JOptionPane.showInputDialog(null, "Ingrese el precio: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
-        cil = JOptionPane.showInputDialog(null, "Ingrese la cilindrada: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cilAux );
-        hp = JOptionPane.showInputDialog(null, "Ingrese los caballos de fuerza: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cabAux );
+        this.precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio:")); // para double
+
+        float cil = JOptionPane.showInputDialog(null, "Ingrese la cilindrada: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cilAux );
+        int hp = JOptionPane.showInputDialog(null, "Ingrese los caballos de fuerza: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cabAux );
+        double km = Double.parseDouble(JOptionPane.showInputDialog("Ingrese KM iniciales:"));
+
+        this.motor = new Motor(km, cil, hp);
     }
 
     public void avanzar(int km){
-        if(motor.requiereCambioAceite(km)){
+        this.motor.sumarKilometros(km); // primero incrementa
+        if(this.motor.requiereCambioAceite(km)){ // luego verifico
             JOptionPane.showMessageDialog("El auto necesita cambio de aceite.");
         }else{
-            JOptionPane.showMessageDialog("Usted avanzo " + km + " kilometros. ");
+            JOptionPane.showMessageDialog("Usted avanzo " + km +  " kilometros. ");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Auto: " + marca + " " + modelo + " | KM: " + motor.getKilometrosRecorridos();
     }
 
 }

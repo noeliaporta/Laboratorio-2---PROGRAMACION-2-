@@ -7,8 +7,8 @@ Mostrar la información de cada auto (puede ser por consola o usando JOptionPane
 
 public class Main {
     public static void main(String[] args) {
-        Motor M = new Motor(double kilometrosRecorridos, float cilindrada, int caballosFuerza);
-        Auto A1 = new Auto(String marca, String modelo, String color, double precio, double kilometrosRecorridos);
+        //Motor M = new Motor(double kilometrosRecorridos, float cilindrada, int caballosFuerza);
+        //Auto A1 = new Auto(String marca, String modelo, String color, double precio, double kilometrosRecorridos);
 
         ArrayList<Auto> listaAutos = new ArrayList<>();
 
@@ -20,6 +20,10 @@ public class Main {
         listaAutos.add(auto1);
         listaAutos.add(auto2);
         listaAutos.add(auto3);
+
+        // simular el avance
+        auto1.avanzar(6000); // Superará los 100k y saltará el aviso
+        auto2.avanzar(50000);
 
         // Mostrar la lista
         for (Auto a : listaAutos) {
