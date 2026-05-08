@@ -1,4 +1,4 @@
-package Empresa_MEG.src.main.java.org.example;
+package org.example;
 import javax.swing.JOptionPane;
 
 public class Auto {
@@ -12,7 +12,7 @@ public class Auto {
         cargarAutos();
     }
 
-    public Auto(String marca, String modelo, String color, Motor motor, double cil, int hp) {
+    public Auto(String marca, String modelo, String color, double precio, Motor motor) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
@@ -26,19 +26,19 @@ public class Auto {
         this.color = JOptionPane.showInputDialog(null, "Ingrese el color: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
         this.precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio:")); // para double
 
-        float cil = JOptionPane.showInputDialog(null, "Ingrese la cilindrada: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cilAux );
-        int hp = JOptionPane.showInputDialog(null, "Ingrese los caballos de fuerza: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE, cabAux );
+        float cil = Float.parseFloat(JOptionPane.showInputDialog("Ingrese cilindrada:"));
+        int hp = Integer.parseInt(JOptionPane.showInputDialog("Ingrese HP:"));
         double km = Double.parseDouble(JOptionPane.showInputDialog("Ingrese KM iniciales:"));
 
         this.motor = new Motor(km, cil, hp);
     }
 
     public void avanzar(int km){
-        this.motor.sumarKilometros(km); // primero incrementa
-        if(this.motor.requiereCambioAceite(km)){ // luego verifico
-            JOptionPane.showMessageDialog("El auto necesita cambio de aceite.");
-        }else{
-            JOptionPane.showMessageDialog("Usted avanzo " + km +  " kilometros. ");
+        this.motor.sumarKilometros(km); // primero incrementa los km
+        if (this.motor.requiereCambioAceite()) { // Luego verifica
+            JOptionPane.showMessageDialog(null, "El auto " + marca + " necesita cambio de aceite.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Avanzó " + km + " km. Total: " + motor.getKilometrosRecorridos());
         }
     }
 
@@ -48,17 +48,3 @@ public class Auto {
     }
 
 }
-/*
-Clase Auto
-Atributos:
-marca
-modelo
-color
-Motor motor (composición)
-precio
-Métodos:
-avanzar(int km):
-Incrementa los kilómetros recorridos del motor.
-Invoca el método requiereCambioAceite() del motor.
-Si devuelve true, mostrar un mensaje con JOptionPane.showMessageDialog indicando que el auto necesita cambio de aceite.
- */
