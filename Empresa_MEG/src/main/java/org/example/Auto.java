@@ -1,50 +1,86 @@
 package org.example;
-import javax.swing.JOptionPane;
 
-public class Auto {
+import javax.swing.*;
+
+public abstract class Auto {
+
     private String marca;
     private String modelo;
     private String color;
-    private double precio;
     private Motor motor;
+    private double precio;
 
-    public Auto(){
-        cargarAutos();
+    public Auto() {
     }
 
-    public Auto(String marca, String modelo, String color, double precio, Motor motor) {
+    public Auto(String marca, String modelo, String color, Motor motor, double precio) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
+        this.motor = motor;
         this.precio = precio;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Motor getMotor() {
+        return motor;
+    }
+
+    public void setMotor(Motor motor) {
         this.motor = motor;
     }
 
-    public void cargarAutos(){
-        this.marca = JOptionPane.showInputDialog(null, "Ingrese la marca: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
-        this.modelo = JOptionPane.showInputDialog(null, "Ingrese el modelo: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
-        this.color = JOptionPane.showInputDialog(null, "Ingrese el color: ", "-------- AutoMG ---------", JOptionPane.QUESTION_MESSAGE );
-        this.precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio:")); // para double
-
-        float cil = Float.parseFloat(JOptionPane.showInputDialog("Ingrese cilindrada:"));
-        int hp = Integer.parseInt(JOptionPane.showInputDialog("Ingrese HP:"));
-        double km = Double.parseDouble(JOptionPane.showInputDialog("Ingrese KM iniciales:"));
-
-        this.motor = new Motor(km, cil, hp);
+    public double getPrecio() {
+        return precio;
     }
 
-    public void avanzar(int km){
-        this.motor.sumarKilometros(km); // primero incrementa los km
-        if (this.motor.requiereCambioAceite()) { // Luego verifica
-            JOptionPane.showMessageDialog(null, "El auto " + marca + " necesita cambio de aceite.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Avanzó " + km + " km. Total: " + motor.getKilometrosRecorridos());
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void avanzar(int km) {
+        motor.setKilometrosRecorridos(
+                motor.getKilometrosRecorridos() + km
+        );
+
+        if (motor.requiereCambioAceite()) {
+            JOptionPane.showMessageDialog(null, "El auto " + marca + " " + modelo + " necesita cambio de aceite.");
         }
+    }
+
+    public void mostrarInfo(){
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
-        return "Auto: " + marca + " " + modelo + " | KM: " + motor.getKilometrosRecorridos();
+        return "\nAuto { " + "Marca: " + marca +
+                " Modelo: " + modelo +
+                " Color: " + color +
+                " Precio: $" + precio +
+                " " + motor + " }";
     }
-
 }

@@ -1,38 +1,39 @@
 package org.example;
-import java.util.ArrayList;
-/*Crear un ArrayList<Auto> con al menos 3 autos distintos.
-Simular el avance de los autos con distintos valores de kilómetros (por ejemplo: 30.000, 50.000, 25.000).
-Mostrar la información de cada auto (puede ser por consola o usando JOptionPane).*/
 
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
+
     public static void main(String[] args) {
-        //Motor M = new Motor(double kilometrosRecorridos, float cilindrada, int caballosFuerza);
-        //Auto A1 = new Auto(String marca, String modelo, String color, double precio, double kilometrosRecorridos);
 
-        ArrayList<Auto> listaAutos = new ArrayList<>();
+        ArrayList<Auto> autos = new ArrayList<>();
 
-        Motor motor1 = new Motor(0, 1.6f, 1000); // se le escribe f para que java no lo confunda con un double
-        Motor motor2 = new Motor(15000, 2.0f, 2500);
-        Motor motor3 = new Motor(20000, 1.4f, 500);
+        Motor motor1 = new Motor(80000, 1.6, 110);
+        Motor motor2 = new Motor(60000, 2.0, 150);
+        Motor motor3 = new Motor(95000, 1.8, 130);
 
-        Auto auto1 = new Auto("Toyota", "Corolla", "Azul",25000.0, motor1);
-        Auto auto2 = new Auto("Ford", "Mustang","Negro",45000.0, motor2);
-        Auto auto3 = new Auto("Honda", "Civic","Blanco", 30000.0, motor3);
+        AutoFamiliar familiar = new AutoFamiliar("Toyota", "Corolla", "Blanco", motor1, 25000000, 4, 5);
+        AutoUtilitario utilitario = new AutoUtilitario("Ford", "Focus", "Negro", motor2, 22000000, 1500, 12);
+        AutoDeportivo deportivo = new AutoDeportivo("Ferrari", "F8", "Rojo", motor3, 37000000, 340, 2.9);
 
-        // Añadir los autos a la lista usando el método .add()
-        listaAutos.add(auto1);
-        listaAutos.add(auto2);
-        listaAutos.add(auto3);
+        /*Auto auto1 = new Auto("Toyota", "Corolla", "Blanco", motor1, 25000000);
+        Auto auto2 = new Auto("Ford", "Focus", "Negro", motor2, 22000000);
+        Auto auto3 = new Auto("Honda", "Civic", "Rojo", motor3, 27000000);*/
 
-        // simular el avance
-        auto1.avanzar(3000); // Superará los 100k y saltará el aviso
-        auto2.avanzar(50000);
-        auto3.avanzar(25000);
+        autos.add(familiar);
+        autos.add(utilitario);
+        autos.add(deportivo);
 
-        for (Auto a : listaAutos) {
-            System.out.println(a);
+        familiar.avanzar(30000);
+        utilitario.avanzar(50000);
+        deportivo.avanzar(25000);
+
+        for (Auto auto : autos) {
+            //JOptionPane.showMessageDialog(null, auto);
+            auto.mostrarInfo();
+            auto.avanzar(1000);
+            System.out.println("-----------------------------------------\n");
         }
-
     }
 }
