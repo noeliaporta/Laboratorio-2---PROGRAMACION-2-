@@ -2,6 +2,7 @@ package org.example;
 
 public class AutoDeportivo extends Auto{
 
+
     private  double velocidadMaxima;  // En km
     private double aceleracion0a100; //En segundo
 
@@ -39,6 +40,10 @@ public class AutoDeportivo extends Auto{
 
     @Override
     public String toString() {
-        return super.toString() + "\nAutoDeportivo {" + "Velocidad Maxima: " + velocidadMaxima + " Aceleracion 0 a 100: " + aceleracion0a100 + "}";
+        String base = super.toString().replace("</html>", "");
+        return base +
+                "<br><b>DATOS DEL DEPORTIVO:</b><br>" +
+                "Velocidad Maxima: " + velocidadMaxima + " km/h<br>" +
+                "Aceleracion 0 a 100: " + aceleracion0a100 + " km/h</html>";
     }
 }

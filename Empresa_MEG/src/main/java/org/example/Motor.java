@@ -42,9 +42,10 @@ public class Motor {
 
     @Override
     public String toString() {
-        return "Motor{" + "Kilómetros: " + kilometrosRecorridos +
-                " Cilindrada: " + cilindrada +
-                " Caballos de fuerza: " + caballosFuerza
-                + "}";
+        return "Motor: <br>" +
+                "Kilómetros: " + kilometrosRecorridos + "<br>" +
+                "Cilindrada: " + cilindrada + "<br>" +
+                "Caballos de fuerza: " + caballosFuerza +
+                "<br>------------------------------" ;
     }
 }

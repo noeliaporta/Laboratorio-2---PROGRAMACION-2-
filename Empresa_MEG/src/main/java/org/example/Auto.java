@@ -77,10 +77,13 @@ public abstract class Auto {
 
     @Override
     public String toString() {
-        return "\nAuto { " + "Marca: " + marca +
-                " Modelo: " + modelo +
-                " Color: " + color +
-                " Precio: $" + precio +
-                " " + motor + " }";
+        return "<html>" +
+                "<b>--- FICHA DEL VEHÍCULO ---</b><br>" +
+                "<b>Marca:</b> " + marca + "<br>" +
+                "<b>Modelo:</b> " + modelo + "<br>" +
+                "<b>Color:</b> " + color + "<br>" +
+                "<b>Precio:</b> $" + String.format("%.2f", precio) + "<br>" +
+                "------------------------------<br>" +
+                motor.toString() + "</html>";
     }
 }

@@ -37,6 +37,10 @@ public class AutoUtilitario extends Auto {
 
     @Override
     public String toString() {
-        return super.toString() + "\nAutoUtilitario {" + "Capacidad de Carga: " + capacidadCarga + "Volumen de Carga: " + volumenCarga + "}";
+        String base = super.toString().replace("</html>", "");
+        return base +
+                "<br><b>DATOS DE CARGA DEL UTILITARIO:</b><br>" +
+                "Capacidad: " + capacidadCarga + " kg<br>" +
+                "Volumen: " + volumenCarga + " m³</html>";
     }
 }

@@ -1,10 +1,8 @@
 package org.example;
-
-import javax.swing.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Main {
-
     public static void main(String[] args) {
 
         ArrayList<Auto> autos = new ArrayList<>();
@@ -25,15 +23,19 @@ public class Main {
         autos.add(utilitario);
         autos.add(deportivo);
 
+        System.out.println("--- Simulando Avance ---");
         familiar.avanzar(30000);
-        utilitario.avanzar(50000);
-        deportivo.avanzar(25000);
+        utilitario.avanzar(10000);
+        deportivo.avanzar(10000);
 
+        System.out.println("\n--- Informacion de la Flota ---");
         for (Auto auto : autos) {
-            //JOptionPane.showMessageDialog(null, auto);
+            JOptionPane.showMessageDialog(null, auto.toString(), "Información del Vehículo", JOptionPane.INFORMATION_MESSAGE);
+
+            // para verlo también en la terminal
             auto.mostrarInfo();
-            auto.avanzar(1000);
-            System.out.println("-----------------------------------------\n");
+            System.out.println("-----------------------------------------");
         }
+
     }
 }

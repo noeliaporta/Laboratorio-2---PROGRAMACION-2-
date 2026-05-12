@@ -36,6 +36,10 @@ public class AutoFamiliar extends Auto {
 
     @Override
     public String toString() {
-        return super.toString() + "\nAutoFamiliar {" + "Cantidad de Puertas: " + cantidadPuertas + " Cantidad de Asientos: " + cantidadAsientos + "}";
+        String base = super.toString().replace("</html>", "");
+        return base +
+                "<br><b>DATOS DEL FAMILIAR:</b><br>" +
+                "Cantidad de Puertas: " + cantidadPuertas + "<br>" +
+                "Cantidad de Asientos: " + cantidadAsientos + "</html>";
     }
 }
